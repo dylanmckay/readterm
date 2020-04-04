@@ -1,0 +1,20 @@
+[package]
+name = "readterm"
+version = "0.1.0"
+authors = ["Dylan McKay <me@dylanmckay.io>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+log = "0.4"
+
+[target.'cfg(unix)'.dependencies]
+ansi-escapes = "0.1.0"
+# Use Redox's fork of ransid that gets rid of printf warnings.
+ransid-log = "0.4.7"
+# I have a custom patch for raw byte reading.
+rexpect = { git = "https://github.com/dylanmckay/rexpect", branch = "support-raw" }
+
+[target.'cfg(windows)'.dependencies]
+
