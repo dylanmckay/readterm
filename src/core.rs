@@ -180,7 +180,7 @@ impl Terminal {
 }
 
 impl Action {
-    pub fn apply(self, term: &mut Driver) {
+    pub fn apply(self, term: &mut Terminal) {
         match self {
             Action::WriteText(ref text) => term.write_text(text),
             Action::Backspace => term.backspace(),
