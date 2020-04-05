@@ -1,14 +1,13 @@
 use crate::{
-    core::{Settings, Action},
+    core::Settings,
     event,
     os,
-    scroll_buffer::{self, ScrollBuffer},
-    Color, TextSlice, Style,
+    Color,
 };
 use std::process::Command;
 use std::{env, io, mem};
 
-/// A terminal.
+/// A Unix terminal driver.
 pub struct Driver {
     /// The settings.
     settings: Settings,

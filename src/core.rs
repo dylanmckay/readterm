@@ -1,7 +1,7 @@
 use crate::{
     TextSlice, Style,
     event::Event,
-    os::{self, Driver as _},
+    os::Driver as _,
     scroll_buffer::{self, ScrollBuffer},
 };
 use std::io;
@@ -11,6 +11,7 @@ use crate::os::current::Driver as Driver;
 /// A terminal.
 pub struct Terminal {
     /// The settings.
+    #[allow(dead_code)]
     settings: Settings,
     /// The operating-system specific driver.
     os_driver: Driver,
@@ -173,10 +174,8 @@ impl Terminal {
             ClearScreen => {
                 self.scroll_buffer.clear_visible();
             },
-            _ => (),
         }
     }
-
 }
 
 impl Action {

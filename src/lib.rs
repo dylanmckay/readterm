@@ -12,7 +12,7 @@ pub use self::event::Event;
 mod color;
 mod core;
 mod event;
-mod os;
+pub mod os;
 pub mod scroll_buffer;
 
 
