@@ -165,21 +165,3 @@ impl Drop for Driver {
     }
 }
 
-impl Default for Settings {
-    fn default() -> Self {
-        let shell = if let Ok(shell) = env::var("SHELL") {
-            shell
-        } else {
-            "sh".to_owned()
-        };
-
-        Settings {
-            shell,
-            lines_to_remember: 10_000,
-            line_count: 100,
-            column_count: 85,
-            tab_width: 2,
-        }
-    }
-}
-
