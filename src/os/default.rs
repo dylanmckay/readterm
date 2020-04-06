@@ -44,6 +44,7 @@ mod default_shell {
 pub struct Driver {
     events: std::sync::mpsc::Receiver<manager_thread::Event>,
     shell_stdin: ChildStdin,
+    is_session_finished: bool,
 }
 
 impl os::Driver for Driver {
@@ -62,6 +63,7 @@ impl os::Driver for Driver {
         Ok(Driver {
             events: rx,
             shell_stdin,
+            is_session_finished: false,
         })
     }
 
@@ -127,6 +129,8 @@ impl os::Driver for Driver {
                     }
                 },
                 manager_thread::Event::ShellExited(exit_status) => {
+                    self.is_session_finished = true;
+
                     println!("shell exited: {:?}", exit_status);
                 },
             }
@@ -136,9 +140,7 @@ impl os::Driver for Driver {
     }
 
     /// Checks if the underlying shell session has finished.
-    fn is_session_finished(&self) -> bool {
-        unimplemented!();
-    }
+    fn is_session_finished(&self) -> bool { self.is_session_finished }
 }
 
 mod manager_thread {
